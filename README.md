@@ -27,4 +27,5 @@ Users can deploy multiple agent clusters and link them to the management console
 Although it's possible to use the same Kubernetes cluster hosting the management cluster, this is not recommended.
 
 
-![]()
+![](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/blob/master/static/klovercloud-platform-overview.png)
+
