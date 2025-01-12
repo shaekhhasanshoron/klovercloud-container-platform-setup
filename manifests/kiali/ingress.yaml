@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: kiali
+  namespace: istio-system
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: kiali.20.118.206.57.nip.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: kiali
+                port:
+                  number: 20001
+            path: /
+            pathType: ImplementationSpecific

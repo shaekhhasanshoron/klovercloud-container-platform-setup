@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  labels:
+    app: grafana-ingress
+  name: grafana-ingress
+  namespace: k8-monitoring
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: grafana.20.118.206.57.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: kube-prom-stack-grafana
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
+
+

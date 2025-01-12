@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  labels:
+    app: ingress
+  name: loki
+  namespace: loki
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: loki.20.118.206.57.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: loki-gateway
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
