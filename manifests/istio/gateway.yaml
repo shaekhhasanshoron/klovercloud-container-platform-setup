@@ -8,7 +8,7 @@ spec:
     istio: ingressgateway
   servers:
     - hosts:
-        - '*.mesh.20.118.206.119.nip.io'
+        - '*.<istio-domain>'
       port:
         name: http
         number: 80

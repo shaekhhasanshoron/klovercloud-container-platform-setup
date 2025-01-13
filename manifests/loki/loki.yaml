@@ -1,3 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    role: klovercloud
+  name: loki
 ---
 # Source: loki/templates/chunks-cache/poddisruptionbudget-chunks-cache.yaml
 apiVersion: policy/v1
@@ -1034,7 +1040,7 @@ spec:
       metadata:
         name: storage
       spec:
-        storageClassName: longhorn
+        storageClassName: <storageclassname>
         accessModes:
           - ReadWriteOnce
         resources:

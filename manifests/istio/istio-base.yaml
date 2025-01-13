@@ -1,3 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    role: klovercloud
+  name: istio-system
 ---
 # Source: base/templates/reader-serviceaccount.yaml
 # This singleton service account aggregates reader permissions for the revisions in a given cluster

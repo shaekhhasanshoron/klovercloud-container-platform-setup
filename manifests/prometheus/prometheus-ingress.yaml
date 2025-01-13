@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: prometheus.20.118.206.57.nip.io
+  - host: <domain>
     http:
       paths:
       - backend:
