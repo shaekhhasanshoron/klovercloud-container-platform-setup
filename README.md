@@ -166,6 +166,8 @@ Update the variables and apply the helm command.
 ```  
 helm install kc-operator --namespace klovercloud klovercloud-charts/klovercloud-operator --version 0.2.5 \
     --set operator.namespace=klovercloud \
+    --set agentOperator.image.tag="v2.1" \
+    --set agentOperator.chart.version="0.2.6" \
     --set cluster.volumes.storageType=BARE_METAL \
     --set cluster.volumes.storageClass.readWriteOnce=<storage class name RWO> \
     --set platform.temporal.host="95.216.152.146:7233" \
