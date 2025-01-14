@@ -75,6 +75,7 @@ metadata:
     app.kubernetes.io/part-of: "istio"
     app.kubernetes.io/version: "1.24.1"
     helm.sh/chart: gateway-1.24.1
+    svccontroller.k3s.cattle.io/lbpool: pool2
     app: istio-ingressgateway
     istio: ingressgateway
   annotations:
