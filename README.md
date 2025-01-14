@@ -119,6 +119,10 @@ Now create a 'A-record' for your domain and point that to that IP.
 
 #### 3.1.4 Creating Certificate Secret
 
+There are two ways to enable/create tls secret for your domain. 
+
+**Way One - If you already have tls certificate and key for your domain:**
+
 Create a Kubernetes secret to provide TLS certificates for the wildcard domain. 
 First, create a Kubernetes secret file named `wild-cert-secret.yaml` and include the 
 base64-decoded TLS certificate and certificate key for your domain. 
@@ -143,10 +147,20 @@ Now apply the certificate secret:
 kubectl apply -f wild-cert-secret.yaml
 ```
 
-> Note: If you want kubernetes to manage and create certificate secrets for you, then you need to setup a [cert-manager](https://cert-manager.io/) and create 
-> certificate for your domain. 
-> 
-> If you face any difficulties while setting certificate secret or cert-manager, please contact [klovercloud support](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#6-support)
+**Way Two - If you want Kubernetes to generate and manage tls certificate secret for your domain:**
+
+First setup [cert-manager](https://cert-manager.io/) on your cluster,
+
+```
+kubectl apply -f manifests/cert-manager/deploy.yaml
+```
+
+After running cert-manager, now apply the configuration, it will create a clusterissuer named `klovercloud-letsencrypt`.
+```
+kubectl apply -f manifests/cert-manager/cluster-issuer.yaml
+```
+
+> If you face any difficulties while generating certificate secret or cert-manager, please contact [klovercloud support](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#6-support)
 
 #### 3.1.5 Pull Klovercloud Operator
 
@@ -170,6 +184,7 @@ helm install kc-operator --namespace klovercloud klovercloud-charts/klovercloud-
     --set agentOperator.chart.version="0.2.6" \
     --set cluster.volumes.storageType=BARE_METAL \
     --set cluster.volumes.storageClass.readWriteOnce=<storage class name RWO> \
+    --set cluster.clusterissuer.name="" \
     --set platform.temporal.host="95.216.152.146:7233" \
     --set platform.temporal.namespace="default" \
     --set platform.namespace=klovercloud \
@@ -179,8 +194,19 @@ helm install kc-operator --namespace klovercloud klovercloud-charts/klovercloud-
     --set platform.user.operatorUser.username="<any email address>" \
     --set platform.user.operatorUser.password="<any password>" \
     --set platform.service.domain.wildcard.tlsSecret="wild-cert-secret" \
+    --set platform.service.domain.useClusterIssuerForGeneratingDomainTlsSecret="false" \
     --set platform.service.domain.wildcard.name="<wild card supported domain>"
 ```
+
+Here, 
+* Tls Certificate: 
+  * If you have created tls secret following section [3.1.4](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#314-creating-certificate-secret), set the following values
+    * `platform.service.domain.wildcard.tlsSecret=wild-cert-secret`.
+  * If you did not create tls secret and instead deployed cert-manager and created clusterissuer following section [3.1.4](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#314-creating-certificate-secret), set the following values
+    * `cluster.clusterissuer.name="klovercloud-letsencrypt"`
+    * `platform.service.domain.wildcard.tlsSecret=""`
+    * `platform.service.domain.useClusterIssuerForGeneratingDomainTlsSecret="true"`
+
 #### 3.1.7 Verify the installation
 
 Check if all the components for klovercloud management console has installed or not inside `klovercloud` namespace.
@@ -478,6 +504,11 @@ helm delete kc-operator -n klovercloud
 Delete the created pvc
 ```
 kubectl delete --all pvc -n klovercloud
+```
+
+Delete the namespace
+```
+kubectl delete ns klovercloud
 ```
 
 #### 7.2 Agent Cluster deletion steps
