@@ -7,7 +7,7 @@
 4. [Verification](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#4-verification)
 5. [Troubleshooting](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#5-troubleshooting)
 6. [Support](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#6-support)
-
+7. [Deletion Steps](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#6-deletion-steps)
 ## 1. Introduction
 [Klovercloud](https://klovercloud.com/) container platform cost-effective Container Platform on top of Kubernetes with all cutting-edge technologies to help your applications scale.
 For more details [click here](https://klovercloud.com/klovercloud-container-platform-on-kubernetes/).
@@ -459,3 +459,51 @@ Go to management console and create a namespace. Check if it is successfully ini
 Please contact klovercloud team,
 
 Mail: [support@klovercloud.com](support@klovercloud.com)
+
+## 7. Deletion Steps
+
+#### 7.1 Management Cluster deletion steps
+
+Go to the kubernetes cluster where you have installed the management operator. Run the commands
+
+Check the operator 
+
+```
+helm list -n klovercloud
+```
+Now delete the operator
+```
+helm delete kc-operator -n klovercloud
+```
+Delete the created pvc
+```
+kubectl delete --all pvc -n klovercloud
+```
+
+#### 7.2 Agent Cluster deletion steps
+
+Go to the kubernetes cluster where you have installed the agent operator. Run the commands
+
+Check the operator
+
+```
+helm list -n <deployed namespace>
+```
+Now delete the operator
+```
+helm delete kc-agent-operator -n <deployed namespace>
+```
+Delete the created pvc
+```
+kubectl delete --all pvc -n <deployed namespace>
+```
+
+Delete the created secrets
+```
+kubectl delete secret agent-crypto-key ci-agent-crypto-secret -n <deployed namespace>
+```
+
+Delete created namespace
+```
+kubectl delete ns <deployed namespace>
+```
