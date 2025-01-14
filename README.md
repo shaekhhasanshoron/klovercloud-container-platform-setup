@@ -506,6 +506,17 @@ Delete the created pvc
 kubectl delete --all pvc -n klovercloud
 ```
 
+If you have applied cert-manager and generated secret using cluster-issuer, then remove the secrets created by cert-manager with prefix `-ingress-tls-secret``,
+```
+kubectl delete secret -n klovercloud \
+klovercloud-dashboard-webapp-ingress-tls-secret \
+klovercloud-facade-ingress-tls-secret \
+klovercloud-listener-ingress-tls-secret \
+klovercloud-multicluster-console-gateway-ingress-tls-secret \
+klovercloud-proxy-server-ingress-tls-secret \
+klovercloud-webapp-ingress-tls-secret
+```
+
 Delete the namespace
 ```
 kubectl delete ns klovercloud
