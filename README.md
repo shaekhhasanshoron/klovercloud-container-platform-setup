@@ -514,7 +514,8 @@ klovercloud-facade-ingress-tls-secret \
 klovercloud-listener-ingress-tls-secret \
 klovercloud-multicluster-console-gateway-ingress-tls-secret \
 klovercloud-proxy-server-ingress-tls-secret \
-klovercloud-webapp-ingress-tls-secret
+klovercloud-webapp-ingress-tls-secret \
+klovercloud-lighthouse-webapp-ingress-tls-secret
 ```
 
 Delete the namespace
