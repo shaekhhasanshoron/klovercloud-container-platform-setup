@@ -304,11 +304,16 @@ kubectl get secrets/argocd-initial-admin-secret -n argocd --template={{.data.pas
 
 Prometheus is required for visualizing application matrices. 
 
-Now apply the manifests,  
+Now apply the manifests,  this will create prometheus pod inside `k8-monitoring` namespace
 
 ```
 kubectl create -f manifests/prometheus/crds/
 kubectl apply -f manifests/prometheus/prometheus.yaml
+```
+
+Now verify all the running pods
+```
+kubectl get po -n k8-monitoring
 ```
 
 Now create ingresses for prometheus and grafana. Before applying the manifests, replace the host domain (host domain that points to the ExternalIP of Nginx Ingress Controller's LoadBalancer Service) in the` <domain> ` section in `manifests/prometheus/prometheus-ingress.yaml` and `manifests/prometheus/grafana-ingress.yaml` files.
@@ -349,10 +354,10 @@ Apply running loki, apply promtail config
 kubectl apply -f manifests/loki/promtail.yaml
 ```
 
-Now create ingresses for loki. Before applying the manifests, replace the host domain (host domain that points to the ExternalIP of Nginx Ingress Controller's LoadBalancer Service) in the` <domain> ` section in `manifests/loki/loki-ingress.yaml` file.
+Now create ingresses for loki. Before applying the manifests, replace the host domain (host domain that points to the ExternalIP of Nginx Ingress Controller's LoadBalancer Service) in the` <domain> ` section in `manifests/loki/ingress.yaml` file.
 
 ```
-kubectl apply -f manifests/loki/loki-ingress.yaml
+kubectl apply -f manifests/loki/ingress.yaml
 ```
 
 #### 3.2.5 Install Service Mesh - Istio
@@ -525,6 +530,8 @@ kubectl delete ns klovercloud
 
 #### 7.2 Agent Cluster deletion steps
 
+#### 7.2.1 Delete agent operator
+
 Go to the kubernetes cluster where you have installed the agent operator. Run the commands
 
 Check the operator
@@ -549,4 +556,41 @@ kubectl delete secret agent-crypto-key ci-agent-crypto-secret -n <deployed names
 Delete created namespace
 ```
 kubectl delete ns <deployed namespace>
+```
+
+#### 7.2.2 Delete ArgoCD
+
+```
+kubectl delete -f manifests/argocd/ingress.yaml
+kubectl delete -f manifests/argocd/argocd.yaml -n argocd
+kubectl delete namespace argocd
+```
+
+#### 7.2.3 Delete Prometheus and Grafana
+
+```
+kubectl delete -f manifests/prometheus/prometheus-ingress.yaml
+kubectl delete -f manifests/prometheus/grafana-ingress.yaml
+kubectl delete -f manifests/prometheus/prometheus.yaml
+kubectl delete -f manifests/prometheus/crds/
+```
+
+#### 7.2.4 Delete Loki
+
+```
+kubectl delete -f manifests/loki/ingress.yaml
+kubectl delete -f manifests/loki/promtail.yaml
+kubectl delete -f manifests/loki/loki.yaml
+```
+
+#### 7.2.5 Delete Istio, Jaeger and Kiali
+
+```
+kubectl delete -f manifests/kiali/jaeger.yaml
+kubectl delete -f manifests/kiali/ingress.yaml
+kubectl delete -f manifests/kiali/kiali.yaml
+kubectl delete -f manifests/istio/gateway.yaml
+kubectl delete -f manifests/istio/istio-ingressgateway.yaml
+kubectl delete -f manifests/istio/istiod.yaml
+kubectl delete -f manifests/istio/istio-base.yaml
 ```

@@ -6241,36 +6241,36 @@ subjects:
     namespace: k8-monitoring
 ---
 # Source: kube-prometheus-stack/charts/grafana/templates/tests/test.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: kube-prom-stack-grafana-test
-  labels:
-    helm.sh/chart: grafana-8.5.2
-    app.kubernetes.io/name: grafana
-    app.kubernetes.io/instance: kube-prom-stack
-    app.kubernetes.io/version: "11.2.1"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
-    "helm.sh/hook": test
-    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
-  namespace: k8-monitoring
-spec:
-  serviceAccountName: kube-prom-stack-grafana-test
-  containers:
-    - name: kube-prom-stack-test
-      image: "docker.io/bats/bats:v1.4.1"
-      imagePullPolicy: "IfNotPresent"
-      command: ["/opt/bats/bin/bats", "-t", "/tests/run.sh"]
-      volumeMounts:
-        - mountPath: /tests
-          name: tests
-          readOnly: true
-  volumes:
-    - name: tests
-      configMap:
-        name: kube-prom-stack-grafana-test
-  restartPolicy: Never
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: kube-prom-stack-grafana-test
+#  labels:
+#    helm.sh/chart: grafana-8.5.2
+#    app.kubernetes.io/name: grafana
+#    app.kubernetes.io/instance: kube-prom-stack
+#    app.kubernetes.io/version: "11.2.1"
+#    app.kubernetes.io/managed-by: Helm
+#  annotations:
+#    "helm.sh/hook": test
+#    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
+#  namespace: k8-monitoring
+#spec:
+#  serviceAccountName: kube-prom-stack-grafana-test
+#  containers:
+#    - name: kube-prom-stack-test
+#      image: "docker.io/bats/bats:v1.4.1"
+#      imagePullPolicy: "IfNotPresent"
+#      command: ["/opt/bats/bin/bats", "-t", "/tests/run.sh"]
+#      volumeMounts:
+#        - mountPath: /tests
+#          name: tests
+#          readOnly: true
+#  volumes:
+#    - name: tests
+#      configMap:
+#        name: kube-prom-stack-grafana-test
+#  restartPolicy: Never
 ---
 # Source: kube-prometheus-stack/templates/prometheus-operator/admission-webhooks/job-patch/job-createSecret.yaml
 apiVersion: batch/v1
