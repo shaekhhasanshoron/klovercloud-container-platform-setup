@@ -7,7 +7,7 @@
 4. [Verification](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#4-verification)
 5. [Troubleshooting](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#5-troubleshooting)
 6. [Support](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#6-support)
-7. [Deletion Steps](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#6-deletion-steps)
+7. [Deletion Steps](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#7-deletion-steps)
 ## 1. Introduction
 [Klovercloud](https://klovercloud.com/) container platform cost-effective Container Platform on top of Kubernetes with all cutting-edge technologies to help your applications scale.
 For more details [click here](https://klovercloud.com/klovercloud-container-platform-on-kubernetes/).
