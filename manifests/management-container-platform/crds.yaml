@@ -1,0 +1,3088 @@
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: operatorcaches.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: OperatorCache
+    listKind: OperatorCacheList
+    plural: operatorcaches
+    singular: operatorcache
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: OperatorCache is the Schema for the operatorcaches API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: OperatorCacheSpec defines the desired state of OperatorCache
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for Base Controller is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: OperatorCacheStatus defines the observed state of OperatorCache
+              properties:
+                activatedDBType:
+                  type: string
+                clusterID:
+                  type: string
+                statesMap:
+                  additionalProperties:
+                    type: string
+                  type: object
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: bases.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: Base
+    listKind: BaseList
+    plural: bases
+    singular: base
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: Base is the Schema for the bases API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: BaseSpec defines the desired state of Base
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for Base Controller is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: BaseStatus defines the observed state of Base
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: cassandras.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: Cassandra
+    listKind: CassandraList
+    plural: cassandras
+    singular: cassandra
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: Cassandra is the Schema for the cassandras API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: CassandraSpec defines the desired state of Cassandra
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for Cassandra Service is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: CassandraStatus defines the observed state of Cassandra
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: consuls.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: Consul
+    listKind: ConsulList
+    plural: consuls
+    singular: consul
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: Consul is the Schema for the consuls API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: ConsulSpec defines the desired state of Consul
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for Loki Consul Service is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: ConsulStatus defines the observed state of Consul
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: distributors.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: Distributor
+    listKind: DistributorList
+    plural: distributors
+    singular: distributor
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: Distributor is the Schema for the distributors API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: DistributorSpec defines the desired state of Distributor
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for Loki Distributor Service is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: DistributorStatus defines the observed state of Distributor
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: gateways.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: Gateway
+    listKind: GatewayList
+    plural: gateways
+    singular: gateway
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: Gateway is the Schema for the gateways API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: GatewaySpec defines the desired state of Gateway
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for Loki Gateway Service is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: GatewayStatus defines the observed state of Gateway
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: generals.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: General
+    listKind: GeneralList
+    plural: generals
+    singular: general
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: General is the Schema for the generals API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: GeneralSpec defines the desired state of General
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for General Controller is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: GeneralStatus defines the observed state of General
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: ingesters.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: Ingester
+    listKind: IngesterList
+    plural: ingesters
+    singular: ingester
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: Ingester is the Schema for the ingesters API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: IngesterSpec defines the desired state of Ingester
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for Loki Ingester Service is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: IngesterStatus defines the observed state of Ingester
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudactivitylogs.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudActivityLog
+    listKind: KlovercloudActivityLogList
+    plural: klovercloudactivitylogs
+    singular: klovercloudactivitylog
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudActivityLog is the Schema for the klovercloudactivitylogs
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudActivityLogSpec defines the desired state of KlovercloudActivityLog
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Activity Log Service is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudActivityLogStatus defines the observed state of
+                KlovercloudActivityLog
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: kloverclouddashboards.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudDashboard
+    listKind: KlovercloudDashboardList
+    plural: kloverclouddashboards
+    singular: kloverclouddashboard
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudDashboard is the Schema for the kloverclouddashboards
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudDashboardSpec defines the desired state of KlovercloudDashboard
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Dashboard Service is an
+                    optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudDashboardStatus defines the observed state of
+                KlovercloudDashboard
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudexternalendpointmanagers.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudExternalEndpointManager
+    listKind: KlovercloudExternalEndpointManagerList
+    plural: klovercloudexternalendpointmanagers
+    singular: klovercloudexternalendpointmanager
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudExternalEndpointManager is the Schema for the klovercloudexternalendpointmanagers
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudExternalEndpointManagerSpec defines the desired
+                state of KlovercloudExternalEndpointManager
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud External Endpoint Manager
+                    Service is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudExternalEndpointManagerStatus defines the observed
+                state of KlovercloudExternalEndpointManager
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudfacades.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudFacade
+    listKind: KlovercloudFacadeList
+    plural: klovercloudfacades
+    shortNames:
+      - facade
+      - klovercloudfacade
+    singular: klovercloudfacade
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudFacade is the Schema for the klovercloudfacades API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudFacadeSpec defines the desired state of KlovercloudFacade
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Facade Service is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudFacadeStatus defines the observed state of KlovercloudFacade
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudgeneralpublishers.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudGeneralPublisher
+    listKind: KlovercloudGeneralPublisherList
+    plural: klovercloudgeneralpublishers
+    singular: klovercloudgeneralpublisher
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudGeneralPublisher is the Schema for the klovercloudgeneralpublishers
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudGeneralPublisherSpec defines the desired state
+                of KlovercloudGeneralPublisher
+              properties:
+                replicas:
+                  default: 1
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudGeneralPublisherStatus defines the observed state
+                of KlovercloudGeneralPublisher
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudharbors.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudHarbor
+    listKind: KlovercloudHarborList
+    plural: klovercloudharbors
+    singular: klovercloudharbor
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudHarbor is the Schema for the klovercloudharbors API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudHarborSpec defines the desired state of KlovercloudHarbor
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Harbor is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudHarborStatus defines the observed state of KlovercloudHarbor
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudkafkas.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudKafka
+    listKind: KlovercloudKafkaList
+    plural: klovercloudkafkas
+    singular: klovercloudkafka
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudKafka is the Schema for the KlovercloudKafka's API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudKafkaSpec defines the desired state of KlovercloudKafka
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Kafka is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudKafkaStatus defines the observed state of KlovercloudKafka
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudlighthouses.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudLightHouse
+    listKind: KlovercloudLightHouseList
+    plural: klovercloudlighthouses
+    singular: klovercloudlighthouse
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudLightHouse is the Schema for the klovercloudlighthouses
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudLightHouseSpec defines the desired state of KlovercloudLightHouse
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Light House is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudLightHouseStatus defines the observed state of
+                KlovercloudLightHouse
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudlisteners.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudListener
+    listKind: KlovercloudListenerList
+    plural: klovercloudlisteners
+    singular: klovercloudlistener
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudListener is the Schema for the klovercloudlisteners
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudListenerSpec defines the desired state of KlovercloudListener
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Listener Service is an
+                    optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudListenerStatus defines the observed state of KlovercloudListener
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudlogmanagers.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudLogManager
+    listKind: KlovercloudLogManagerList
+    plural: klovercloudlogmanagers
+    singular: klovercloudlogmanager
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudLogManager is the Schema for the klovercloudlogmanagers
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudLogManagerSpec defines the desired state of KlovercloudLogManager
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Log Manager Service is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudLogManagerStatus defines the observed state of
+                KlovercloudLogManager
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmailsenders.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMailSender
+    listKind: KlovercloudMailSenderList
+    plural: klovercloudmailsenders
+    singular: klovercloudmailsender
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMailSender is the Schema for the klovercloudmailsenders
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMailSenderSpec defines the desired state of KlovercloudMailSender
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Mail Sender is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMailSenderStatus defines the observed state of
+                KlovercloudMailSender
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmanagements.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudManagement
+    listKind: KlovercloudManagementList
+    plural: klovercloudmanagements
+    singular: klovercloudmanagement
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudManagement is the Schema for the klovercloudmanagements
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudManagementSpec defines the desired state of KlovercloudManagement
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Management Service is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudManagementStatus defines the observed state of
+                KlovercloudManagement
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmarketplaces.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMarketplace
+    listKind: KlovercloudMarketplaceList
+    plural: klovercloudmarketplaces
+    singular: klovercloudmarketplace
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMarketplace is the Schema for the klovercloudmarketplaces
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMarketplaceSpec defines the desired state of KlovercloudMarketplace
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Marketplace is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMarketplaceStatus defines the observed state of
+                KlovercloudMarketplace
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmessagepublishers.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMessagePublisher
+    listKind: KlovercloudMessagePublisherList
+    plural: klovercloudmessagepublishers
+    singular: klovercloudmessagepublisher
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMessagePublisher is the Schema for the klovercloudmessagepublishers
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMessagePublisherSpec defines the desired state
+                of KlovercloudMessagePublisher
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Message Publisher is an
+                    optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMessagePublisherStatus defines the observed state
+                of KlovercloudMessagePublisher
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmetrics.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMetrics
+    listKind: KlovercloudMetricsList
+    plural: klovercloudmetrics
+    singular: klovercloudmetrics
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMetrics is the Schema for the klovercloudmetrics API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMetricsSpec defines the desired state of KlovercloudMetrics
+              properties:
+                replicas:
+                  default: 1
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMetricsStatus defines the observed state of KlovercloudMetrics
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmongoes.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMongo
+    listKind: KlovercloudMongoList
+    plural: klovercloudmongoes
+    singular: klovercloudmongo
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMongo is the Schema for the klovercloudmongoes API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMongoSpec defines the desired state of KlovercloudMongo
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Mongo is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMongoStatus defines the observed state of KlovercloudMongo
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmonitors.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMonitor
+    listKind: KlovercloudMonitorList
+    plural: klovercloudmonitors
+    singular: klovercloudmonitor
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMonitor is the Schema for the klovercloudMonitors
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMonitorSpec defines the desired state of KlovercloudMonitor
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Monitor is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMonitorStatus defines the observed state of KlovercloudMonitor
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudpipelines.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudPipeline
+    listKind: KlovercloudPipelineList
+    plural: klovercloudpipelines
+    singular: klovercloudpipeline
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudPipeline is the Schema for the klovercloudpipelines
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudPipelineSpec defines the desired state of KlovercloudPipeline
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Pipeline Service is an
+                    optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudPipelineStatus defines the observed state of KlovercloudPipeline
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudtallies.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudTally
+    listKind: KlovercloudTallyList
+    plural: klovercloudtallies
+    singular: klovercloudtally
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudTally is the Schema for the klovercloudtallies API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudTallySpec defines the desired state of KlovercloudTally
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Tally Service is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudTallyStatus defines the observed state of KlovercloudTally
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudvpcs.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudVpc
+    listKind: KlovercloudVpcList
+    plural: klovercloudvpcs
+    singular: klovercloudvpc
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudVpc is the Schema for the klovercloudvpcs API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudVpcSpec defines the desired state of KlovercloudVpc
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Snapshorter is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudVpcStatus defines the observed state of KlovercloudVpc
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudwebapps.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudWebapp
+    listKind: KlovercloudWebappList
+    plural: klovercloudwebapps
+    singular: klovercloudwebapp
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudWebapp is the Schema for the klovercloudwebapps API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudWebappSpec defines the desired state of KlovercloudWebapp
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Webapp is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudWebappStatus defines the observed state of KlovercloudWebapp
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudauthservers.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudAuthServer
+    listKind: KlovercloudAuthServerList
+    plural: klovercloudauthservers
+    singular: klovercloudauthserver
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudAuthServer is the Schema for the klovercloudauthservers
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudAuthServerSpec defines the desired state of KlovercloudAuthServer
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Auth Server Service is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudAuthServerStatus defines the observed state of
+                KlovercloudAuthServer
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudcicdqueues.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudCICDQueue
+    listKind: KlovercloudCICDQueueList
+    plural: klovercloudcicdqueues
+    singular: klovercloudcicdqueue
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudCICDQueue is the Schema for the klovercloudcicdqueues
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudCICDQueueSpec defines the desired state of KlovercloudCICDQueue
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud CI CD Queue Service is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudCICDQueueStatus defines the observed state of
+                KlovercloudCICDQueue
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudcontrolplanewebapps.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudControlPlaneWebapp
+    listKind: KlovercloudControlPlaneWebappList
+    plural: klovercloudcontrolplanewebapps
+    singular: klovercloudcontrolplanewebapp
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudControlPlaneWebapp is the Schema for the klovercloudcontrolplanewebapps
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudControlPlaneWebappSpec defines the desired state
+                of KlovercloudControlPlaneWebapp
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Control Plane Webapp Service
+                    is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudControlPlaneWebappStatus defines the observed
+                state of KlovercloudControlPlaneWebapp
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: kloverclouddashboardwebapps.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudDashboardWebapp
+    listKind: KlovercloudDashboardWebappList
+    plural: kloverclouddashboardwebapps
+    singular: kloverclouddashboardwebapp
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudDashboardWebapp is the Schema for the kloverclouddashboardwebapps
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudDashboardWebappSpec defines the desired state
+                of KlovercloudDashboardWebapp
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Dashboard Webapp Service
+                    is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudDashboardWebappStatus defines the observed state
+                of KlovercloudDashboardWebapp
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudk8sagents.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudK8sAgent
+    listKind: KlovercloudK8sAgentList
+    plural: klovercloudk8sagents
+    singular: klovercloudk8sagent
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudK8sAgent is the Schema for the klovercloudk8sagents
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudK8sAgentSpec defines the desired state of KlovercloudK8sAgent
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud K8s Agent is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudK8sAgentStatus defines the observed state of KlovercloudK8sAgent
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmulticlusterconsolegateways.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMulticlusterConsoleGateway
+    listKind: KlovercloudMulticlusterConsoleGatewayList
+    plural: klovercloudmulticlusterconsolegateways
+    singular: klovercloudmulticlusterconsolegateway
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMulticlusterConsoleGateway is the Schema for the klovercloudmulticlusterconsolegateways
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMulticlusterConsoleGatewaySpec defines the desired
+                state of KlovercloudMulticlusterConsoleGateway
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Multicluster Console Gateway
+                    Service is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMulticlusterConsoleGatewayStatus defines the observed
+                state of KlovercloudMulticlusterConsoleGateway
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmulticlusterlogsavers.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMulticlusterLogSaver
+    listKind: KlovercloudMulticlusterLogSaverList
+    plural: klovercloudmulticlusterlogsavers
+    singular: klovercloudmulticlusterlogsaver
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMulticlusterLogSaver is the Schema for the klovercloudmulticlusterlogsavers
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMulticlusterLogSaverSpec defines the desired state
+                of KlovercloudMulticlusterLogSaver
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Multicluster Log Saver
+                    is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMulticlusterLogSaverStatus defines the observed
+                state of KlovercloudMulticlusterLogSaver
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmulticlusternotifications.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMulticlusterNotification
+    listKind: KlovercloudMulticlusterNotificationList
+    plural: klovercloudmulticlusternotifications
+    singular: klovercloudmulticlusternotification
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMulticlusterNotification is the Schema for the klovercloudmulticlusternotifications
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMulticlusterNotificationSpec defines the desired
+                state of KlovercloudMulticlusterNotification
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Multicluster Notification
+                    is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMulticlusterNotificationStatus defines the observed
+                state of KlovercloudMulticlusterNotification
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudmulticlusters.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudMultiCluster
+    listKind: KlovercloudMultiClusterList
+    plural: klovercloudmulticlusters
+    singular: klovercloudmulticluster
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudMultiCluster is the Schema for the klovercloudmulticlusters
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudMultiClusterSpec defines the desired state of
+                KlovercloudMultiCluster
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Multi Cluster is an optional
+                    field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudMultiClusterStatus defines the observed state
+                of KlovercloudMultiCluster
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudterminalproxyservers.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudTerminalProxyServer
+    listKind: KlovercloudTerminalProxyServerList
+    plural: klovercloudterminalproxyservers
+    singular: klovercloudterminalproxyserver
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudTerminalProxyServer is the Schema for the klovercloudterminalproxyservers
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudTerminalProxyServerSpec defines the desired state
+                of KlovercloudTerminalProxyServer
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Terminal Proxy Server
+                    is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudTerminalProxyServerStatus defines the observed
+                state of KlovercloudTerminalProxyServer
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: redis.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: Redis
+    listKind: RedisList
+    plural: redis
+    singular: redis
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: Redis is the Schema for the redis API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: RedisSpec defines the desired state of Redis
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for Redis Service is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: RedisStatus defines the observed state of Redis
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for Redis is an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudhelmagentgateways.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudHelmAgentGateway
+    listKind: KlovercloudHelmAgentGatewayList
+    plural: klovercloudhelmagentgateways
+    singular: klovercloudhelmagentgateway
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudHelmAgentGateway is the Schema for the klovercloudhelmagentgateways
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudHelmAgentGatewaySpec defines the desired state
+                of KlovercloudHelmAgentGateway
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudHelmAgentGatewayStatus defines the observed state
+                of KlovercloudHelmAgentGateway
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudbillings.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudBilling
+    listKind: KlovercloudBillingList
+    plural: klovercloudbillings
+    singular: klovercloudbilling
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudBilling is the Schema for the klovercloudbillings
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudBillingSpec defines the desired state of KlovercloudBilling
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudBillingStatus defines the observed state of KlovercloudBilling
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudsupportpanels.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudSupportPanel
+    listKind: KlovercloudSupportPanelList
+    plural: klovercloudsupportpanels
+    singular: klovercloudsupportpanel
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudSupportPanel is the Schema for the klovercloudsupportpanels
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudSupportPanelSpec defines the desired state of
+                KlovercloudSupportPanel
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudSupportPanelStatus defines the observed state
+                of KlovercloudSupportPanel
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudticketings.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudTicketing
+    listKind: KlovercloudTicketingList
+    plural: klovercloudticketings
+    singular: klovercloudticketing
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudTicketing is the Schema for the klovercloudticketings
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudTicketingSpec defines the desired state of KlovercloudTicketing
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudTicketingStatus defines the observed state of
+                KlovercloudTicketing
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudcontainerregistries.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudContainerRegistry
+    listKind: KlovercloudContainerRegistryList
+    plural: klovercloudcontainerregistries
+    singular: klovercloudcontainerregistry
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudContainerRegistry is the Schema for the klovercloudcontainerregistries
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudContainerRegistrySpec defines the desired state
+                of KlovercloudContainerRegistry
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudContainerRegistryStatus defines the observed state
+                of KlovercloudContainerRegistry
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudargoorchestrators.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudArgoOrchestrator
+    listKind: KlovercloudArgoOrchestratorList
+    plural: klovercloudargoorchestrators
+    singular: klovercloudargoorchestrator
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudArgoOrchestrator is the Schema for the klovercloudargoorchestrators
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudArgoOrchestratorSpec defines the desired state
+                of KlovercloudArgoOrchestrator
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudArgoOrchestratorStatus defines the observed state
+                of KlovercloudArgoOrchestrator
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudargoagentmanagers.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudArgoAgentManager
+    listKind: KlovercloudArgoAgentManagerList
+    plural: klovercloudargoagentmanagers
+    singular: klovercloudargoagentmanager
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudArgoAgentManager is the Schema for the klovercloudargoagentmanagers
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudArgoAgentManagerSpec defines the desired state
+                of KlovercloudArgoAgentManager
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudArgoAgentManagerStatus defines the observed state
+                of KlovercloudArgoAgentManager
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudargopipelinemanagers.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudArgoPipelineManager
+    listKind: KlovercloudArgoPipelineManagerList
+    plural: klovercloudargopipelinemanagers
+    singular: klovercloudargopipelinemanager
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudArgoPipelineManager is the Schema for the klovercloudargopipelinemanagers
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudArgoPipelineManagerSpec defines the desired state
+                of KlovercloudArgoPipelineManager
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudArgoPipelineManagerStatus defines the observed
+                state of KlovercloudArgoPipelineManager
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudhelmgenerators.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudHelmGenerator
+    listKind: KlovercloudHelmGeneratorList
+    plural: klovercloudhelmgenerators
+    singular: klovercloudhelmgenerator
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudHelmGenerator is the Schema for the klovercloudhelmgenerators
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudHelmGeneratorSpec defines the desired state of
+                KlovercloudHelmGenerator
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudHelmGeneratorStatus defines the observed state
+                of KlovercloudHelmGenerator
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+# Source: klovercloud-operator/templates/default-crds.yaml
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.6.1
+  creationTimestamp: null
+  name: klovercloudhelmmarketplaces.service.klovercloud.com
+spec:
+  group: service.klovercloud.com
+  names:
+    kind: KlovercloudHelmMarketplace
+    listKind: KlovercloudHelmMarketplaceList
+    plural: klovercloudhelmmarketplaces
+    singular: klovercloudhelmmarketplace
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: KlovercloudHelmMarketplace is the Schema for the klovercloudhelmmarketplaces
+            API
+          properties:
+            apiVersion:
+              description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+              type: string
+            kind:
+              description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+              type: string
+            metadata:
+              type: object
+            spec:
+              description: KlovercloudHelmMarketplaceSpec defines the desired state
+                of KlovercloudHelmMarketplace
+              properties:
+                replicas:
+                  default: 1
+                  description: replicas field for KloverCloud Helm Agent Gateway is
+                    an optional field
+                  format: int32
+                  minimum: 0
+                  type: integer
+              type: object
+            status:
+              description: KlovercloudHelmMarketplaceStatus defines the observed state
+                of KlovercloudHelmMarketplace
+              type: object
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

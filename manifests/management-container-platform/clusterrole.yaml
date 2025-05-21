@@ -1,0 +1,128 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: klovercloud-operator-cr
+rules:
+  - apiGroups: [""]
+    resources:
+      - pods
+      - namespaces
+      - pods
+      - services
+      - configmaps
+      - secrets
+    verbs: ["create", "update", "watch", "patch", "get", "list"]
+  - apiGroups: ["apps"]
+    resources:
+      - deployments
+      - statefulsets
+    verbs: ["create", "update", "watch", "patch", "get", "list"]
+  - apiGroups: ["networking.k8s.io"]
+    resources:
+      - ingresses
+    verbs: ["create", "update", "watch", "patch", "get", "list"]
+  - apiGroups: ["coordination.k8s.io"]
+    resources: ["leases"]
+    verbs: ["create", "update", "patch", "watch", "get", "list"]
+  - apiGroups: ["service.klovercloud.com"]
+    resources:
+      - operatorcaches
+      - operatorcaches/status
+      - bases
+      - bases/status
+      - generals
+      - generals/status
+      - klovercloudactivitylogs
+      - klovercloudactivitylogs/status
+      - klovercloudauthservers
+      - klovercloudauthservers/status
+      - klovercloudfacades
+      - klovercloudfacades/status
+      - klovercloudgeneralpublishers
+      - klovercloudgeneralpublishers/status
+      - klovercloudhelmagentgateways
+      - klovercloudhelmagentgateways/status
+      - klovercloudhelmgenerators
+      - klovercloudhelmgenerators/status
+      - klovercloudhelmmarketplaces
+      - klovercloudhelmmarketplaces/status
+      - klovercloudlighthouses
+      - klovercloudlighthouses/status
+      - klovercloudlisteners
+      - klovercloudlisteners/status
+      - klovercloudmanagements
+      - klovercloudmanagements/status
+      - klovercloudmessagepublishers
+      - klovercloudmessagepublishers/status
+      - klovercloudmonitors
+      - klovercloudmonitors/status
+      - klovercloudmulticlusterconsolegateways
+      - klovercloudmulticlusterconsolegateways/status
+      - klovercloudmulticlusters
+      - klovercloudmulticlusters/status
+      - klovercloudpipelines
+      - klovercloudpipelines/status
+      - klovercloudtallies
+      - klovercloudtallies/status
+      - klovercloudterminalproxyservers
+      - klovercloudterminalproxyservers/status
+      - klovercloudvpcs
+      - klovercloudvpcs/status
+      - klovercloudwebapps
+      - klovercloudwebapps/status
+      - klovercloudkafkas
+      - klovercloudkafkas/status
+      - klovercloudmongoes
+      - klovercloudmongoes/status
+      - redis
+      - redis/status
+      - consuls
+      - consuls/status
+      - distributors
+      - distributors/status
+      - gateways
+      - gateways/status
+      - ingesters
+      - ingesters/status
+      - kloverclouddashboards
+      - kloverclouddashboards/status
+      - klovercloudexternalendpointmanagers
+      - klovercloudexternalendpointmanagers/status
+      - klovercloudharbors
+      - klovercloudharbors/status
+      - klovercloudlogmanagers
+      - klovercloudlogmanagers/status
+      - klovercloudmailsenders
+      - klovercloudmailsenders/status
+      - klovercloudmarketplaces
+      - klovercloudmarketplaces/status
+      - klovercloudmessagepublishers
+      - klovercloudmetrics
+      - klovercloudmetrics/status
+      - klovercloudcicdqueues
+      - klovercloudcicdqueues/status
+      - klovercloudcontrolplanewebapps
+      - klovercloudcontrolplanewebapps/status
+      - kloverclouddashboardwebapps
+      - kloverclouddashboardwebapps/status
+      - klovercloudk8sagents
+      - klovercloudk8sagents/status
+      - klovercloudmulticlusterlogsavers
+      - klovercloudmulticlusterlogsavers/status
+      - klovercloudmulticlusternotifications
+      - klovercloudmulticlusternotifications/status
+      - klovercloudbillings
+      - klovercloudbillings/status
+      - klovercloudsupportpanels
+      - klovercloudsupportpanels/status
+      - klovercloudticketings
+      - klovercloudticketings/status
+      - klovercloudcontainerregistries
+      - klovercloudcontainerregistries/status
+      - klovercloudargoorchestrators
+      - klovercloudargoorchestrators/status
+      - klovercloudargoagentmanagers
+      - klovercloudargoagentmanagers/status
+      - klovercloudargopipelinemanagers
+      - klovercloudargopipelinemanagers/status
+    verbs: ["create", "update", "watch", "patch", "get", "list", "delete"]

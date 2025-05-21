@@ -174,6 +174,10 @@ helm repo update
 
 #### 3.1.6 Install Klovercloud Operator
 
+There are two ways to install the operator, either from helm chart, or applying the manifests directly,
+
+**Option 1: Installing through Helm Chart:**
+
 Follow the variables for here [Klovercloud Operator](https://github.com/klovercloud/klovercloud-charts/blob/master/klovercloud-operator.md#klovercloud-operator)
 
 Update the variables and apply the helm command.
@@ -206,6 +210,42 @@ Here,
     * `cluster.clusterissuer.name="klovercloud-letsencrypt"`
     * `platform.service.domain.wildcard.tlsSecret=""`
     * `platform.service.domain.useClusterIssuerForGeneratingDomainTlsSecret="true"`
+
+**Option 2: Installing through Manifests:**
+
+Apply CRD's, Service Account, Cluster Role
+
+Create required crds which will be used by the operator.
+```
+kubectl create -f manifests/management-container-platform/crds.yaml
+```
+
+You need to deploy a ServiceAccount, ClusterRole, and ClusterRoleBinding to give the operator proper access.
+Since the operator watches resources throughout the whole cluster, cluster-level permissions are needed.
+
+> **Note**: The descriptors are based on the `klovercloud` namespace.
+> If you want to use a different namespace, be sure to update the namespace values inside the descriptor files.
+
+```
+kubectl create -f manifests/management-container-platform/serviceaccount.yaml
+kubectl create -f manifests/management-container-platform/clusterrole.yaml
+kubectl create -f manifests/management-container-platform/clusterrolebinding.yaml
+```
+
+Update the configmap and apply.
+```
+kubectl create -f manifests/management-container-platform/configmap.yaml
+```
+
+Update the secret and apply.
+```
+kubectl create -f manifests/management-container-platform/secret.yaml
+```
+
+Update the deployment and apply.
+```
+kubectl create -f manifests/management-container-platform/deploy.yaml
+```
 
 #### 3.1.7 Verify the installation
 
