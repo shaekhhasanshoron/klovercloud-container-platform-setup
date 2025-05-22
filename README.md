@@ -179,7 +179,7 @@ For installing postgres, we will be using [CloudNativePG](https://github.com/clo
 
 We need to configure postgres database, to add temporal schema.
 
-Apply the `temporal-db-setup-script` and `temporal-db-setup` pod to apply the configurations,
+Apply the `temporal-db-setup-script` and `temporal-db-setup` pod to apply the configurations in the `temporal` namespace,
 
 ```
 kubectl apply -f manifests/temporal/db-config-descriptors/temporal-db-setup-script-configmap.yaml -n temporal
@@ -189,7 +189,7 @@ kubectl apply -f manifests/temporal/db-config-descriptors/temporal-db-setup-runn
 
 **Install Temporal:**
 
-For installing temporal, follow the instructions are provided, [click here](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master/manifests/temporal/cloudnative-pg)
+For installing temporal, follow the instructions are provided, [click here](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master/manifests/temporal)
 
 
 #### 3.1.6 Pull Klovercloud Operator

@@ -8,7 +8,7 @@ TEMPORAL_ADMIN_TOOLS_IMAGE="quay.io/klovercloud/temporal-admin-tools:1.27.2-tctl
 PLUGIN_NAME="postgres12"
 DRIVER_NAME="postgres12"
 
-cat << EOF > temporal-v1.27.2.yaml
+cat << EOF > temporal.yaml
 # Source: temporal/templates/server-secret.yaml
 apiVersion: v1
 kind: Secret
