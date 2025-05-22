@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: temporal-db-setup-script
+data:
+  temporal-db-setup.sh: |
+    #!/bin/bash
+    set -euo pipefail
+
+    echo "🚀 Starting Temporal DB setup script with retry loop..."
+
+    SQL_PLUGIN=postgres12
+    SQL_PORT="${SQL_PORT:-5432}"
+    SQL_USER="${SQL_USER}"
+    SQL_PASSWORD="${SQL_PASSWORD}"
+    SQL_HOST="${SQL_HOST:-localhost}"
+
+    export SQL_PLUGIN SQL_PORT SQL_USER SQL_PASSWORD SQL_HOST
+
+    echo "🧠 Using SQL_HOST=$SQL_HOST SQL_PORT=$SQL_PORT SQL_USER=$SQL_USER"
+
+    setup_success=0
+
+    while [ "$setup_success" -eq 0 ]; do
+      echo "⌛ Checking if Postgres at $SQL_HOST:$SQL_PORT is reachable..."
+      if nc -z "$SQL_HOST" "$SQL_PORT"; then
+        echo "✅ Postgres is reachable, proceeding to DB setup..."
+      else
+        echo "❗ Postgres not reachable. Retrying in 5 seconds..."
+        sleep 5
+        continue
+      fi
+
+      echo "📦 Creating and setting up database 'temporal' if needed..."
+      if temporal-sql-tool --plugin "$SQL_PLUGIN" --ep "$SQL_HOST" --pw "$SQL_PASSWORD" --user "$SQL_USER" --db temporal create-database; then
+        echo "✅ Created database 'temporal' (or already existed)."
+      else
+        echo "⚠️ Warning: Database 'temporal' may already exist."
+      fi
+
+      echo "⚙️ Setting up schema for 'temporal' database..."
+      if SQL_DATABASE=temporal temporal-sql-tool setup-schema -v 0.0 && \
+         temporal-sql-tool --plugin "$SQL_PLUGIN" --ep "$SQL_HOST" --pw "$SQL_PASSWORD" --user "$SQL_USER" --db temporal update-schema -d /app/schema/postgresql/v12/temporal/versioned; then
+        echo "✅ Schema setup for 'temporal' succeeded."
+      else
+        echo "❌ Schema setup failed for 'temporal'. Retrying in 10 seconds..."
+        sleep 10
+        continue
+      fi
+
+      echo "📦 Creating and setting up database 'temporal_visibility' if needed..."
+      if temporal-sql-tool --plugin "$SQL_PLUGIN" --ep "$SQL_HOST" --pw "$SQL_PASSWORD" --user "$SQL_USER" --db temporal_visibility create-database; then
+        echo "✅ Created database 'temporal_visibility' (or already existed)."
+      else
+        echo "⚠️ Warning: Database 'temporal_visibility' may already exist."
+      fi
+
+      echo "⚙️ Setting up schema for 'temporal_visibility' database..."
+      if SQL_DATABASE=temporal_visibility temporal-sql-tool setup-schema -v 0.0 && \
+         temporal-sql-tool --plugin "$SQL_PLUGIN" --ep "$SQL_HOST" --pw "$SQL_PASSWORD" --user "$SQL_USER" --db temporal_visibility update-schema -d /app/schema/postgresql/v12/visibility/versioned; then
+        echo "✅ Schema setup for 'temporal_visibility' succeeded."
+      else
+        echo "❌ Schema setup failed for 'temporal_visibility'. Retrying in 10 seconds..."
+        sleep 10
+        continue
+      fi
+
+      # If we reach here, all steps succeeded
+      setup_success=1
+      echo "🎉 All Temporal DB setup steps completed successfully!"
+    done
+
+    echo "✅ Setup done."
+    exit 0

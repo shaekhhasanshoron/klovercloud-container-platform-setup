@@ -1,6 +1,7 @@
 # CloudNativePG Operator Manual Installation Guide (Temporal Namespace)
 
-This guide explains how to manually install the CloudNativePG operator, configure it to use PostgreSQL 17.4, and deploy a PostgreSQL cluster with a temporal database and temporal user inside the temporal namespace.
+This guide explains how to manually install the CloudNativePG operator, configure it to use PostgreSQL 17.4, 
+and deploy a PostgreSQL cluster with a temporal database and temporal user inside the temporal namespace.
 
 ## Prerequisites
 
@@ -9,34 +10,46 @@ This guide explains how to manually install the CloudNativePG operator, configur
 
 ## Step 1: Create the `temporal` Namespace
 
-Create the namespace where Database will be deployed:
+Here we will create CloudNativePG in `temporal` namespace, since we want to deploy the temporal in the same namespace.
 
-```bash
+Create the namespace where Database will be deployed (Create if namespace does not exists):
+
+```
 kubectl create namespace temporal
 ```
 
 ## Step 2: Install the Postgres Operator
 
-Apply the operator manifests:
+Option 1: Apply the operator manifests:
 
-```bash
-kubectl apply -f \
-  https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.0.yaml
-
+You check the releases [https://github.com/cloudnative-pg/cloudnative-pg/releases](https://github.com/cloudnative-pg/cloudnative-pg/releases)
+```
+kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/release-1.21/releases/cnpg-1.21.0.yaml
 ```
 
+Option 2: Direct apply the `operator.yaml`
+```
+kubectl apply -f /manifests/temporal-postgres/cloudnative-pg/descriptors/operator.yaml
+```
+
+This will create a namespace `cnpg-system` and deploy the postgres operator
+
 ### Check the operator deployment
-```bash
+```
 kubectl get deployments -n cnpg-system
 ```
 
 ### Check the operator pod
-```bash
+```
 kubectl get pods -n cnpg-system
 ```
 
 ## Step 3: Create the secret postgres-secret with the credentials
-```bash
+
+Now we will create a postgres user secret name `postgres-secret` in the `temporal` namespace. 
+You can update the `password` which is `appuserpassword123` if you want. The `username` is `appuser`, you can also update it.
+
+```
 kubectl create secret generic postgres-secret \
   --namespace temporal \
   --from-literal=username=appuser \
@@ -47,54 +60,50 @@ kubectl create secret generic postgres-secret \
 
 ## Step 4: Create the PostgreSQL cluster YAML
 
-```bash
-cat > postgres-cluster.yaml << EOF
-apiVersion: postgresql.cnpg.io/v1
-kind: Cluster
-metadata:
-  name: postgres-cluster
-  namespace: temporal
-spec:
-  instances: 1
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.4
+Apply the `cn-postgres-cluster.yaml` to create the postgres cluster.
 
-  storage:
-    size: 5Gi
-    storageClass: local-path
+Before applying,
+* Update the `storage.size` according to your requirements.
+* Update the `storage.storageClass` based on your cluster storage system.
+* Update the `metadata.name` if you want.
 
-  bootstrap:
-    initdb:
-      database: temporal  # This creates the database first
-      owner: appuser   # This creates the appuser with ownership of appdb
-      secret:
-        name: postgres-secret
-      postInitApplicationSQL:  # Changed from postInitSQL to run after appdb exists
-        - ALTER USER appuser CREATEDB;
-        - GRANT ALL PRIVILEGES ON DATABASE temporal TO appuser;
-        - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO appuser;
-
-  postgresql:
-    parameters:
-      max_connections: "200"
-      shared_buffers: 256MB
-      work_mem: 8MB
-
-  primaryUpdateStrategy: unsupervised
-EOF
+Now apply, it will create a pods with name `postgres-cluster` under `temporal` namespace.  
+```
+kubectl apply -f /manifests/temporal-postgres/cloudnative-pg/descriptors/cn-postgres-cluster.yaml
 ```
 
-## Step 5: Apply the configuration to create the PostgreSQL cluster
-```bash
-kubectl apply -f postgres-cluster.yaml
-```
+> Note: The cluster will create a database named `temporal`.
 
 ### Check the pods being created
-```bash
+```
 kubectl get pods -l cnpg.io/cluster=postgres-cluster -n temporal
 ```
 
+### Check the serive being created
+```
+kubectl get svc -n temporal
+```
 
-## Connect to the primary database through a temporary pod (To test the connection)
-```bash
+you will see the services,
+
+```
+kubectl get svc -n temporal
+
+NAME                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+postgres-cluster-r           ClusterIP   10.43.31.225    <none>        5432/TCP                     18d
+postgres-cluster-ro          ClusterIP   10.43.128.137   <none>        5432/TCP                     18d
+postgres-cluster-rw          ClusterIP   10.43.85.209    <none>        5432/TCP                     18d
+```
+We will use `postgres-cluster-rw` for temporal.
+
+## Step 5: Check the connection to the primary database through a temporary pod (To test the connection)
+
+Check the access and connection,
+```
 kubectl exec -it postgres-cluster-1 -n temporal -- env PGPASSWORD=appuserpassword123 psql -U appuser -d temporal -h localhost
+```
+
+Check databases,
+```
+\l
 ```

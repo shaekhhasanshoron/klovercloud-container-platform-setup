@@ -164,10 +164,32 @@ kubectl apply -f manifests/cert-manager/cluster-issuer.yaml
 
 #### 3.1.5 Installing Postgres and Temporal
 
+Create a namespace `temporal`, we will deploy postgres and temporal in this namespace.
+```
+kubectl create namespace temporal
+
+kubectl label namespace temporal role=klovercloud
+```
+
 **Installing Postgres:**
 
-For installing postgres, we will be using `cloudnative-pg` operator to install postgres. Follow the instructions are provided, [click here]()
+For installing postgres, we will be using [CloudNativePG](https://github.com/cloudnative-pg/cloudnative-pg)` operator to install postgres. Follow the instructions are provided, [click here](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master/manifests/temporal-postgres/cloudnative-pg)
 
+**Prepare Postgres Database For Temporal:**
+
+We need to configure postgres database, to add temporal schema.
+
+Apply the `temporal-db-setup-script` and `temporal-db-setup` pod to apply the configurations,
+
+```
+kubectl apply -f manifests/temporal/db-config-descriptors/temporal-db-setup-script-configmap.yaml -n temporal
+
+kubectl apply -f manifests/temporal/db-config-descriptors/temporal-db-setup-runner-pod.yaml -n temporal
+```
+
+**Install Temporal:**
+
+For installing temporal, follow the instructions are provided, [click here](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master/manifests/temporal/cloudnative-pg)
 
 
 #### 3.1.6 Pull Klovercloud Operator

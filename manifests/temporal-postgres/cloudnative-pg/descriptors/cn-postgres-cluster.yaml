@@ -1,0 +1,27 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-cluster
+  namespace: temporal
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.4
+  storage:
+    size: 5Gi
+    storageClass: local-path
+  bootstrap:
+    initdb:
+      database: temporal  # This creates the database first
+      owner: appuser   # This creates the appuser with ownership of appdb
+      secret:
+        name: postgres-secret
+      postInitApplicationSQL:  # Changed from postInitSQL to run after appdb exists
+        - ALTER USER appuser CREATEDB;
+        - GRANT ALL PRIVILEGES ON DATABASE temporal TO appuser;
+        - GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO appuser;
+  postgresql:
+    parameters:
+      max_connections: "200"
+      shared_buffers: 256MB
+      work_mem: 8MB
+  primaryUpdateStrategy: unsupervised
