@@ -162,7 +162,15 @@ kubectl apply -f manifests/cert-manager/cluster-issuer.yaml
 
 > If you face any difficulties while generating certificate secret or cert-manager, please contact [klovercloud support](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master?tab=readme-ov-file#6-support)
 
-#### 3.1.5 Pull Klovercloud Operator
+#### 3.1.5 Installing Postgres and Temporal
+
+**Installing Postgres:**
+
+For installing postgres, we will be using `cloudnative-pg` operator to install postgres. Follow the instructions are provided, [click here]()
+
+
+
+#### 3.1.6 Pull Klovercloud Operator
 
 [Klovercloud Operator](https://github.com/klovercloud/klovercloud-charts/blob/master/klovercloud-operator.md#klovercloud-operator) is a helm chart for installing
 Management console into your kubernetes cluster. Run the following helm commands to fetch the klovercloud operator helm repository:
@@ -172,7 +180,7 @@ helm repo add klovercloud-charts https://klovercloud.github.io/klovercloud-chart
 helm repo update
 ```
 
-#### 3.1.6 Install Klovercloud Operator
+#### 3.1.7 Install Klovercloud Operator
 
 There are two ways to install the operator, either from helm chart, or applying the manifests directly,
 
@@ -247,7 +255,7 @@ Update the deployment and apply.
 kubectl create -f manifests/management-container-platform/deploy.yaml
 ```
 
-#### 3.1.7 Verify the installation
+#### 3.1.8 Verify the installation
 
 Check if all the components for klovercloud management console has installed or not inside `klovercloud` namespace.
 
