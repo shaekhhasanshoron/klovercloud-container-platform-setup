@@ -557,6 +557,10 @@ kubectl label namespace harbor role=klovercloud
 kubectl apply -f container-registry/harbor/manifests/harbor.yaml -n harbor
 ```
 
+#### Install Gitlab
+
+To install private gitlab server, follow the instructions are provided, [click here](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master/manifests/gitlab)
+
 #### 3.2.10 Onboard Cluster using Klovercloud Agent Operator
 
 Go to management console UI, follow the steps:
