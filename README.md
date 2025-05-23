@@ -505,7 +505,59 @@ kubectl exec -it -n istio-system deploy/kiali -- cat /var/run/secrets/kubernetes
 > `cat /var/run/secrets/kubernetes.io/serviceaccount/token`
 
 
-#### 3.2.8 Onboard Cluster using Klovercloud Agent Operator
+#### 3.2.8 Addons
+
+#### Install Harbor
+
+Harbor is a container registry. If you want to install `Harbor` in your cluster, follow the bellow instructions:
+
+```
+helm repo add harbor https://helm.goharbor.io
+
+helm repo update
+```
+
+Update the followings in values file `manifests/harbor/values.yaml`. You can directly update the file or just create a copy of `manifests/harbor/values.yaml` and update the new file.
+
+```
+cp manifests/harbor/values.yaml manifests/harbor/copy-values.yaml
+
+vi manifests/harbor/copy-values.yaml
+```
+
+1. `expose.tls.enabled` = 'true'
+2. `expose.tls.secret.secretName`
+3. `expose.ingress.hosts.core`
+4. `expose.ingress.className`
+5. `externalURL`
+6. `persistence.enabled` = 'true'
+7. `persistence.persistentVolumeClaim.registry.storageClass`
+8. `persistence.persistentVolumeClaim.registry.size`
+9. `persistence.persistentVolumeClaim.jobservice.jobLog.storageClass`
+10. `persistence.persistentVolumeClaim.jobservice.jobLog.size`
+11. `persistence.persistentVolumeClaim.database.storageClass`
+12. `persistence.persistentVolumeClaim.database.size`
+13. `persistence.persistentVolumeClaim.redis.storageClass`
+14. `persistence.persistentVolumeClaim.redis.size`
+15. `persistence.persistentVolumeClaim.trivy.storageClass`
+16. `persistence.persistentVolumeClaim.trivy.size`
+17. `harborAdminPassword`
+
+Now generate Helm descriptor
+
+```
+helm template kc-harbor harbor/harbor -f manifests/harbor/copy-values.yaml > manifests/harbor/harbor.yaml
+```
+
+```
+kubectl create ns harbor
+
+kubectl label namespace harbor role=klovercloud
+
+kubectl apply -f container-registry/harbor/manifests/harbor.yaml -n harbor
+```
+
+#### 3.2.10 Onboard Cluster using Klovercloud Agent Operator
 
 Go to management console UI, follow the steps:
 1. Go to management console UI.
