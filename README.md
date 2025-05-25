@@ -546,7 +546,7 @@ vi manifests/harbor/copy-values.yaml
 Now generate Helm descriptor
 
 ```
-helm template kc-harbor harbor/harbor -f manifests/harbor/copy-values.yaml > manifests/harbor/harbor.yaml
+helm template kc-harbor harbor/harbor --namespace=harbor -f manifests/harbor/copy-values.yaml > manifests/harbor/harbor.yaml
 ```
 
 ```
@@ -554,7 +554,7 @@ kubectl create ns harbor
 
 kubectl label namespace harbor role=klovercloud
 
-kubectl apply -f container-registry/harbor/manifests/harbor.yaml -n harbor
+kubectl apply -f manifests/harbor/harbor.yaml -n harbor
 ```
 
 #### Install Gitlab
@@ -725,4 +725,17 @@ kubectl delete -f manifests/istio/gateway.yaml
 kubectl delete -f manifests/istio/istio-ingressgateway.yaml
 kubectl delete -f manifests/istio/istiod.yaml
 kubectl delete -f manifests/istio/istio-base.yaml
+```
+
+#### 7.2.6 Delete Addons
+
+#### Delete Gitlab
+
+If you have installed gitlab through helm, follow the commands.
+
+```
+helm list -n gitlab
+helm delete gitlab -n gitlab
+kubectl delete --all pvc -n gitlab
+kubectl delete --all secret -n gitlab
 ```

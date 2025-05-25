@@ -29,7 +29,7 @@ kubectl apply -f https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg
 
 Option 2: Direct apply the `operator.yaml`
 ```
-kubectl apply -f /manifests/temporal-postgres/cloudnative-pg/descriptors/operator.yaml
+kubectl apply -f manifests/temporal-postgres/cloudnative-pg/descriptors/operator.yaml
 ```
 
 This will create a namespace `cnpg-system` and deploy the postgres operator
@@ -60,7 +60,7 @@ kubectl create secret generic postgres-secret \
 
 ## Step 4: Create the PostgreSQL cluster YAML
 
-Apply the `cn-postgres-cluster.yaml` to create the postgres cluster.
+Apply the `manifests/temporal-postgres/cloudnative-pg/descriptors/cn-postgres-cluster.yaml` to create the postgres cluster.
 
 Before applying,
 * Update the `storage.size` according to your requirements.
@@ -69,7 +69,7 @@ Before applying,
 
 Now apply, it will create a pods with name `postgres-cluster` under `temporal` namespace.  
 ```
-kubectl apply -f /manifests/temporal-postgres/cloudnative-pg/descriptors/cn-postgres-cluster.yaml
+kubectl apply -f manifests/temporal-postgres/cloudnative-pg/descriptors/cn-postgres-cluster.yaml
 ```
 
 > Note: The cluster will create a database named `temporal`.

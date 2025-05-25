@@ -3,15 +3,12 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-#    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-#    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
   name: gitlab-server
   namespace: gitlab
 spec:
   ingressClassName: nginx
   rules:
-    - host: gitlab.35.192.206.168.nip.io
+    - host: <domain>
       http:
         paths:
           - path: /
@@ -23,5 +20,5 @@ spec:
                   number: 80
 #  tls:
 #    - hosts:
-#        - keycloak.eks.hkmd7dff3.klovercloud.io
+#        - <domain>
 #      secretName: wild-cert-secret

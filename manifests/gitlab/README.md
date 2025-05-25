@@ -13,9 +13,11 @@ This is document for setting Gitlab Private Server.
 * minimum 10 GB ram
 * minimum 5 GB storage
 
-### Installation Procedure
+## Installation
 
-#### Create Namespace
+You can install Gitlab directly or through helm template. We recommend to install through Helm template.
+
+### Create Namespace
 
 ```
 kubectl create ns gitlab
@@ -23,17 +25,66 @@ kubectl create ns gitlab
 kubectl label namespace gitlab role=klovercloud
 ```
 
+### Install through Helm (Recommended)
+
+You need to deploy gitlab through helm chart. First fetch the repository
+
+```
+helm repo add gitlab https://charts.gitlab.io/
+helm repo update
+```
+
+Check the version check for chart version. For example the chart version is `9.0.1`
+````
+helm search repo | grep gitlab/gitlab
+````
+
+You need to update the `manifests/gitlab/helm/values.yaml` file. Update the following values 
+according to your cluster configuration.
+
+```
+vi manifests/gitlab/helm/values.yaml
+```
+
+* `global.storageClass`: set storage class
+* `global.hosts.https` : If you have Tls enabled for your domain.
+* `global.hosts.domain` : Your domain. f.e 'klovercloud.com'. Make sure domain is wildcard supported.
+* `global.hosts.gitlab.name` : Set the gitlab domain. f.e 'gitlab.klovercloud.com'
+* `ingress.tls.enabled` : Set true/false.
+* `ingress.tls.secretName` : Set Tls secret name if enabled is 'true'.
+* `ingress.class` : Set ingress class.
+* `gitlab.gitaly.persistence.storageClass` : Set storage class.
+* `minio.persistence.storageClass` : Set storage class.
+
+After updating the `manifests/gitlab/helm/values.yaml`
+```
+helm install gitlab gitlab/gitlab --version 9.0.1 --namespace=gitlab  -f manifests/gitlab/helm/values.yaml
+```
+Here `9.0.1` is the chart version. If the current chart version is greater you can use that.
+
+```
+kubectl get po -n harbor -w
+```
+
+After finishing installation, you can get the `root` user password, (a user will be created by gitlab: `root`)
+
+```
+kubectl get secret gitlab-gitlab-initial-root-password -n gitlab -ojsonpath='{.data.password}' | base64 --decode
+```
+
+### Install Directly (Monolith)
+
 #### Step One: Deploy resources (PVC, Service, Ingress)
 First we need to deploy the gitlab descriptors below. 
 
 Before applying,
-* Update the `storageClassName` in `manifests/gitlab/descriptors/gitlab-pvc.yaml`
-* Update the `ingressClassName` and `host` in `manifests/gitlab/descriptors/gitlab-ingress.yaml`
+* Update the `storageClassName` in `manifests/gitlab/monolith/gitlab-pvc.yaml`
+* Update the `ingressClassName` and `host` in `manifests/gitlab/monolith/gitlab-ingress.yaml`
 
 ````
-kubectl apply -f manifests/gitlab/descriptors/gitlab-pvc.yaml
-kubectl apply -f manifests/gitlab/descriptors/gitlab-svc.yaml
-kubectl apply -f manifests/gitlab/descriptors/gitlab-ingress.yaml
+kubectl apply -f manifests/gitlab/monolith/gitlab-pvc.yaml
+kubectl apply -f manifests/gitlab/monolith/gitlab-svc.yaml
+kubectl apply -f manifests/gitlab/monolith/gitlab-ingress.yaml
 ````
 
 > Note: Here in pvc.yaml, the storage class will be filesystem because deployment will try to attach storage.
@@ -44,11 +95,7 @@ kubectl apply -f manifests/gitlab/descriptors/gitlab-ingress.yaml
 
 #### Step Two: Install Deployment
 
-Deploy the following deployment file
-
-````
-kubectl apply -f gitlab-deploy.yaml
-````
+Deploy the following deployment file `manifests/gitlab/monolith/gitlab-deploy.yaml`
 
 There are certain components inside deployments:
 
@@ -70,6 +117,11 @@ There are certain components inside deployments:
   gitlab into path under `/etc/gitlab/ssl` for example`/etc/gitlab/ssl/gitlab.example.com.crt` and `/etc/gitlab/ssl/gitlab.example.com.key`. here  you
   can set any value in place of `/gitlab.example.com`, we can set the domain `gitlab.console.klovercloud.com` instead or any value.
   If the folder does not exists kubernetes will create it. **Remember that we need to set these to path to gitlab config file**
+
+Now deploy,
+````
+kubectl apply -f manifests/gitlab/monolith/gitlab-deploy.yaml
+````
 
 After deploying the deployment wait for pod to be running.
 

@@ -1,0 +1,145 @@
+global:
+  edition: ce
+  gitlabVersion: "18.0.1"
+  storageClass: "local-path"
+
+  # Pod Disruption Budget
+  pdb:
+    apiVersion: "policy/v1"
+
+  hpa:
+    apiVersion: "autoscaling/v2"
+
+  hosts:
+    https: false
+    domain: klovercloud.com
+#    minio:
+#      name: minio-gitlab.20.83.33.207.nip.io
+    gitlab:
+      name: gitlab.klovercloud.com
+#    registry:
+#      name: registry-gitlab.klovercloud.com
+
+  email:
+  #    display_name: "Klovercloud"
+  #    from: "cloud.monitoring@klovercloud.net"
+
+  smtp:
+    enabled: false
+  #    address: "smtp.sendgrid.net"
+  #    authentication: plain
+  #    user_name: apikey
+  #    password:
+  #      secret: smtp-secret
+  #      key: password
+  #    tls: false
+  #    port: 587
+
+  ingress:
+    configureCertmanager: false
+    tls:
+      enabled: false
+      secretName: ""
+    class: nginx
+    apiVersion: "networking.k8s.io/v1"
+
+  kas:
+    enabled: false
+
+  minio:
+    enabled: true
+
+gitlab:
+  webservice:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 100m
+      limits:
+        memory: 2048Mi
+        cpu: 200m
+
+  sidekiq:
+    resources:
+      requests:
+        memory: 256Mi
+        cpu: 100m
+      limits:
+        memory: 1024Mi
+        cpu: 200m
+
+  migrations:
+    enabled: true
+
+  toolbox:
+    enabled: true
+
+  gitaly:
+    persistence:
+      size: "100Gi"
+      storageClass: "local-path"
+      resources:
+        requests:
+          memory: 256Mi
+          cpu: 100m
+        limits:
+          memory: 512Mi
+          cpu: 200m
+
+  gitlab-shell:
+    enabled: true
+    hpa:
+      apiVersion: "autoscaling/v2"
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 50m
+      limits:
+        memory: 512Mi
+        cpu: 100m
+
+# minio
+minio:
+  persistence:
+    storageClass: "local-path"
+    size: "50Gi"
+
+certmanager:
+  install: false
+
+postgresql:
+  install: true
+  image:
+    tag: 16.6.0
+  primary:
+    persistence:
+      size: "30Gi"
+
+prometheus:
+  install: false
+
+nginx-ingress:
+  enabled: false
+
+haproxy:
+  install: false
+
+redis:
+  install: true
+  networkPolicy:
+    enabled: false
+  master:
+    persistence:
+      enabled: true
+      size: "20Gi"
+
+gitlab-runner:
+  install: true
+  runners:
+    privileged: true
+
+registry:
+  enabled: true
+
+traefik:
+  install: false

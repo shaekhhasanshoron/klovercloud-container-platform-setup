@@ -8,7 +8,7 @@ spec:
   minReadySeconds: 25
   progressDeadlineSeconds: 600
   replicas: 1
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app: gitlab-server
@@ -56,8 +56,6 @@ spec:
 #            - name: cert-files
 #              mountPath: "/etc/gitlab/ssl/gitlab.example.com.key"
 #              subPath: tls.keykub
-      securityContext:
-        fsGroup: 2000
       terminationGracePeriodSeconds: 10
       volumes:
         - name: gitlab-data

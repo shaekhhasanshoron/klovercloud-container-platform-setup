@@ -7,7 +7,7 @@ metadata:
   name: gitlab-data
   namespace: gitlab
 spec:
-  storageClassName: standard-rwo
+  storageClassName: <storage class name>
   accessModes:
     - ReadWriteOnce
   resources:
