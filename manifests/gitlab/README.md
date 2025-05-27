@@ -63,7 +63,7 @@ helm install gitlab gitlab/gitlab --version 9.0.1 --namespace=gitlab  -f manifes
 Here `9.0.1` is the chart version. If the current chart version is greater you can use that.
 
 ```
-kubectl get po -n harbor -w
+kubectl get po -n gitlab -w
 ```
 
 After finishing installation, you can get the `root` user password, (a user will be created by gitlab: `root`)

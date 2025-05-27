@@ -557,9 +557,23 @@ kubectl label namespace harbor role=klovercloud
 kubectl apply -f manifests/harbor/harbor.yaml -n harbor
 ```
 
+> **IMPORTANT:** If you have installed harbor without Tls `http://harbor.192.168.3.38.nip`, to make sure containerd pull the image
+By default docker or contaienrd tries to pull from any registry with TLS, you need to set off the TLS verification.
+
 #### Install Gitlab
 
 To install private gitlab server, follow the instructions are provided, [click here](https://github.com/shaekhhasanshoron/klovercloud-container-platform-setup/tree/master/manifests/gitlab)
+
+> **Important:** In gitlab, if you are expecting gitlab to request to certain urls that are private domains/
+> IPs (<ip>.nip.io) that are not accessible on the internet, then you need to allow local networks for the Outbound
+> request. For example If you want to create an webhook for example, `http://192.168.1.8.nip.io/<any urls>`, here the domain
+is locally accessible and gitlab by default does not allow that. So you need to allow that in the settings. 
+> 
+> Follow the instructions.
+> * Go to gitlab and go to admin panel
+> * Go to Settings -> Networks
+> * Search for `Outbound Request` and Click on the `Allow request to local networks from webhooks and integrations`
+> * Click on `Save Changes`
 
 #### 3.2.10 Onboard Cluster using Klovercloud Agent Operator
 
