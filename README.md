@@ -323,9 +323,16 @@ klovercloud-vpc-6dbc546df5-gwdh5                           1/1     Running
 klovercloud-webapp-cc555f449-2cszj                         1/1     Running
 ````
 
-After the installation restart the `klovercloud-monitor` pod. 
+If all the services are running then make sure that initial company is registered or not. Run the following command and check if the variable of `KlovercloudInitialCompanyCreationStatus` exists or not. 
+If the variable exist and the value is Created, then the verification is completed.
 
-Check the ingress in `klovercloud` namespace. You will find the url of the management console UI `klovercloud-webapp` Host. 
+```
+kubectl get operatorcache -n klovercloud operatorcache -o yaml | grep KlovercloudInitialCompanyCreationStatus
+```
+
+The output should be: `KlovercloudInitialCompanyCreationStatus: Created`
+
+Now, you can access the platform using the webapp console endpoint. Run the endpoint in the browser and log in with your provided company admin email and password.
 
 ### 3.2 Agent Cluster Setup Steps
 
