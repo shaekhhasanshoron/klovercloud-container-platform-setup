@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kc-dev-wild-certificate
+  namespace: cert-manager
+spec:
+  secretName: wild-cert-secret
+  commonName: kc-dev.klovercloud.com
+  dnsNames:
+    - kc-dev.klovercloud.com
+    - '*.kc-dev.klovercloud.com'
+  issuerRef:
+    name: letsencrypt-cluster-prod
+    kind: ClusterIssuer
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"

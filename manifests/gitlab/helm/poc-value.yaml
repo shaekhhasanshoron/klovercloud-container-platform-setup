@@ -1,0 +1,109 @@
+global:
+  edition: ce
+  hosts:
+    domain: 135.235.192.122.nip.io
+    externalIP: 135.235.192.122
+    https: false
+  ingress:
+    configureCertmanager: false
+    class: nginx
+    enabled: true
+    tls:
+      enabled: false
+  shell:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi
+      limits:
+        cpu: 100m
+        memory: 256Mi
+  puma:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 200m
+        memory: 512Mi
+
+gitlab:
+  webservice:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 200m
+        memory: 512Mi
+  gitaly:
+    persistence:
+      storageClass: local-path
+
+  gitlab-shell:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+
+certmanager:
+  install: false
+
+nginx-ingress:
+  enabled: false  # You already have nginx ingress installed
+
+registry:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 256Mi
+
+minio:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 256Mi
+  persistence:
+    storageClass: local-path
+
+postgresql:
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+  primary:
+    persistence:
+      storageClass: local-path
+
+redis:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 256Mi
+  master:
+    persistence:
+      storageClass: local-path
+
+gitlab-runner:
+  install: false
+
+prometheus:
+  install: false
+
+grafana:
+  enabled: false
